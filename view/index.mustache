@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="author" content="Ed Me">
+    <meta name="keywords" content="{{title}}">
+    <meta name="description" content="Personal blog of Ed Me">
+    <!--优先使用 IE 最新版本和 Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>{{title}}</title>
+    <link href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" rel="stylesheet">
+    <style>
+        /* style scoped */
+        * {
+            font-size: 13px;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ol-box {
+            margin: 0;
+            padding: 0;
+        }
+
+        .ol-box a {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        ol span {
+            margin-left: 12px;
+            color: rgb(153, 153, 153);
+        }
+
+        a {
+            margin: 0 0.07rem;
+            padding: 3px 2px;
+            border-radius: 2px
+        }
+
+        a, a:link, a:hover, a:active {
+            outline: none;
+        }
+
+        a, a:link, a:active {
+            text-decoration: none;
+            color: #22BAD9;
+        }
+
+        a:hover {
+            text-decoration: underline rgba(34, 186, 217, 0.5) double;
+        }
+
+        .copyright-title {
+            padding: 0;
+            margin: 0;
+            line-height: 60px;
+        }
+
+        .network {
+            height: calc(100% - 60px);
+            width: 70%;
+            overflow: hidden;
+            padding: .5rem;
+            margin: auto;
+            box-sizing: border-box;
+        }
+
+        @media screen and (max-width: 900px) {
+            #copyright, .components-list > * {
+                display: block;
+            }
+
+            .copyright-title {
+                padding: 3px 5px;
+            }
+
+            .ol-box span {
+                margin: 0;
+            }
+
+            .network {
+                width: 90%;
+            }
+
+            .copyright-title {
+                line-height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- html scoped -->
+<div id="noteScript.root" style="height:100%;width: 100%">
+    <h5 class="copyright-title"><a href="/" id="copyright">noteScript</a>[<a href="https://github.com/noteScript">noteScript.GitHub</a>]
+    </h5>
+    {{^html}}
+        <div class="network">
+            <ol class="ol-box">
+                {{#components}}
+                    <li class="components-list"><a href="/{{path}}">{{name}} — {{label}}</a><span>{{time}}</span></li>
+                {{/components}}
+            </ol>
+        </div>
+    {{/html}}
+    {{#html}}
+        <div class="markdown-body network">
+            {{{html}}}
+        </div>
+    {{/html}}
+</div>
+
+</body>
+<script type="application/javascript">
+    'use strict'
+    /* javaScript scoped */
+    vw(10)
+    document.getElementById('copyright').innerHTML = 'NOTESCRIPT&#169;️Ed&nbsp;Me&nbsp;-&nbsp;2018'
+
+    function vw () {
+        var company = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100
+
+        var HTML = document && (document.documentElement || document.getElementsByTagName('html')[0]),
+                // 获取到html元素
+                EVENT = 'orientationchange' in window ? 'orientationchange' : 'resize' // 根据设备选择事件
+
+        function method () {
+            var clientWidth = HTML.clientWidth
+
+            return HTML.style.fontSize = clientWidth && clientWidth / company + 'px'
+        }
+
+        try {
+            window.addEventListener(EVENT, method) || document.addEventListener('DOMContentLoaded', method)
+        } catch (error) {
+            window.attachEvent(EVENT, method) || document.attachEvent('DOMContentLoaded', method)
+        } finally {
+            console.log('1vw = ' + HTML.clientWidth / company + 'px --https://github.com/noteScript/em_vw')
+        }
+
+        return {company: company}
+    }
+</script>
+</html>

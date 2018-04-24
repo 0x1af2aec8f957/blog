@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <style>
+        /* style scoped */
+        * {
+            font-size: 0.008rem;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        ol {
+            margin: .5rem;
+            padding: 0;
+        }
+
+        ol a {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        ol span {
+            margin-left: .15rem;
+            color: rgb(153, 153, 153);
+        }
+
+        a {
+            margin: 0 0.07rem;
+            padding: 0.01rem .03rem;
+            border-radius: 2px
+        }
+
+        a, a:link, a:hover, a:active {
+            outline: none;
+        }
+
+        a, a:link, a:active {
+            text-decoration: none;
+            color: #22BAD9;
+        }
+
+        a:hover {
+            text-decoration: underline #c3c3c3 double;
+        }
+
+        h5 {
+            padding: 0;
+            margin: 0;
+            line-height: 0.3rem;
+        }
+
+        .network {
+            height: calc(100% - 0.3rem);
+            width: 100%;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+<!-- html scoped -->
+<div id="noteScript.root" style="height:100%;width: 100%">
+    <h5><a href="/">noteScript</a>[<a href="https://github.com/noteScript">noteScript.GitHub</a>]</h5>
+    <div class="network">
+        <ol>
+            <li><a href="">It's Hard to Forego Efficiency</a><span>March 28, 2017</span></li>
+        </ol>
+    </div>
+</div>
+
+</body>
+<script type="application/javascript">
+  /* javaScript scoped */
+  vw(10)
+
+  function vw (company = 100) {
+
+    const HTML = document && (document.documentElement || document.getElementsByTagName('html')[0]), // 获取到html元素
+      EVENT = 'orientationchange' in window ? 'orientationchange' : 'resize' // 根据设备选择事件
+
+    function method () {
+      const {clientWidth} = HTML
+      return HTML.style.fontSize = clientWidth && ((clientWidth / company) + 'px')
+    }
+
+    try {
+      window.addEventListener(EVENT, method) || document.addEventListener('DOMContentLoaded', method)
+    } catch (error) {
+      window.attachEvent(EVENT, method) || document.attachEvent('DOMContentLoaded', method)
+    } finally {
+      location.origin.includes('http://localhost:') &&
+      console.log(`1vw = ${HTML.clientWidth / company}px --https://github.com/noteScript/em_vw`)
+    }
+
+    return {company}
+  }
+</script>
+</html>

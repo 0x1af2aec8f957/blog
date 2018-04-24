@@ -1,0 +1,20 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ed Me",
+  "license": "ISC",
+  "dependencies": {
+    "consolidate": "^0.15.1",
+    "express": "^4.16.3",
+    "handlebars": "^4.0.11",
+    "highlight": "^0.2.4",
+    "marked": "^0.3.19",
+    "mustache": "^2.3.0",
+    "mustache-express": "^1.2.5",
+    "stache": "^0.1.0"
+  }
+}
