@@ -56,4 +56,10 @@ cat id_rsa.pub >> .ssh/authorized_keys  # 将公钥文件id_rsa.pub文件内容�
 cat ~/.ssh/id_rsa.pub | ssh username@hostname 'cat >> .ssh/authorized_keys'
 ```
 
+3. 使用自动登录
+
+```bash
+ssh username@hostname
+```
+
 > 本地生成的~/.ssh/id_rsa是私钥，不可发送给任何人！
