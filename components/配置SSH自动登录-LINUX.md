@@ -32,7 +32,7 @@
 1. 在本地机器创建公钥
 
 ```bash
-ssh-keygen -t rsa -C  'XXX@XX.com'
+ssh-keygen -t rsa -C  'username@domain.com'
 ```
 * -t 指定密钥类型，默认即 rsa ，可以省略。
 * -C 设置注释文字，比如你的邮箱。
