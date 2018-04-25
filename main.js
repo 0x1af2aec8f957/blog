@@ -53,7 +53,7 @@ app.get('/:path', function (req, res) {  // user get file
 })
 
 app.post('/pushCode', function (req, res) { // github push or commit
-  process.exec('python gitPull.py', (error, stdout, stderr) => {
+  process.exec(`python ${path.join(__dirname,'gitPull.py')}`, (error, stdout, stderr) => {
     if (error) return res.send('error:Command failed')
     else return res.sendStatus(200)
   })
