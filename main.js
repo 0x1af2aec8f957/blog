@@ -40,8 +40,8 @@ app.get('/', function (req, res) {
 
 app.get('/:path', function (req, res) {
   if (req.params.path === 'pushCode') { // github push or commit
-    process.exec('gitPull.py', (error, stdout, stderr) => {
-      if (error) return res.send('error:not path')
+    process.exec('python gitPull.py', (error, stdout, stderr) => {
+      if (error) return res.send('error:Command failed')
       else return res.send('success')
     })
   }
