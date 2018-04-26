@@ -58,10 +58,31 @@
             text-decoration: underline rgba(34, 186, 217, 0.5) double;
         }
 
-        .copyright-title {
+        .copyright-title, .markdown-title {
             padding: 0;
             margin: 0;
             line-height: 60px;
+        }
+
+        .markdown-title::before {
+            content: attr(weight);
+            margin: 0 12px;
+            color: rgb(153, 153, 153);
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .markdown-title {
+            padding: 0 0.07rem;
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .components-list {
@@ -73,9 +94,14 @@
             width: 70%;
             overflow-x: hidden;
             overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
             padding: .5rem;
             margin: auto;
             box-sizing: border-box;
+        }
+
+        .network::-webkit-scrollbar {
+            display: none
         }
 
         @media screen and (max-width: 900px) {
@@ -85,6 +111,7 @@
 
             .copyright-title {
                 padding: 3px 5px;
+                line-height: 36px;
             }
 
             .ol-box span {
@@ -94,18 +121,20 @@
             .network {
                 width: 90%;
             }
-
-            .copyright-title {
-                line-height: 36px;
-            }
         }
     </style>
 </head>
 <body>
 <!-- html scoped -->
 <div id="noteScript.root" style="height:100%;width: 100%">
-    <h5 class="copyright-title"><a href="/" id="copyright">noteScript</a>[<a href="https://github.com/noteScript">noteScript.GitHub</a>]
+    <h5 class="copyright-title">
+        {{^html}}
+            <a href="/" id="copyright">noteScript</a>[
+            <a href="https://github.com/noteScript">noteScript.GitHub</a>]
+        {{/html}}
+        {{#html}}<p class="markdown-title">{{title}}</p>{{/html}}
     </h5>
+
     {{^html}}
         <div class="network">
             <ol class="ol-box">
@@ -127,7 +156,11 @@
     'use strict'
     /* javaScript scoped */
     vw(10)
-    document.getElementById('copyright').innerHTML = 'NOTESCRIPT&#169;️Ed&nbsp;Me&nbsp;-&nbsp;2018'
+    document.getElementById('copyright') && (document.getElementById('copyright').innerHTML = 'NOTESCRIPT&#169;️Ed&nbsp;Me&nbsp;-&nbsp;2018') // copyright content
+    document.getElementsByClassName('markdown-body')[0].onscroll = function ($event) { // 已阅读区域将记录
+        document.getElementsByClassName('markdown-title')[0].setAttribute('weight', parseInt((this.clientHeight + this.scrollTop) * 100 / this.scrollHeight) + '%')
+        return $event.preventDefault()
+    }
 
     function vw () {
         var company = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100
