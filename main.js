@@ -62,14 +62,14 @@ app.post('/pushCode', function (req, res) { // github push or commit
 })
 
 marked.setOptions({
-  // renderer: new marked.Renderer(),
-  // gfm: true,
-  // tables: true,
-  // breaks: true,
-  // pedantic: false,
-  // sanitize: false,
-  // smartLists: false,
-  // smartypants: false,
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: true,
+  pedantic: false,
+  sanitize: false,
+  smartLists: false,
+  smartypants: false,
   highlight: function (code) {
     return require('highlight.js').highlightAuto(code).value;
   }
